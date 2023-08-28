@@ -1,4 +1,4 @@
-# Scribbles Cafe - used frameworks, packages, technologies
+# [Scribbles Cafe](http://scribbles-cafe.surge.sh/) - used frameworks, packages, technologies
 - [Vite](https://vitejs.dev/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [React icons](https://react-icons.github.io/react-icons/)
@@ -7,5 +7,6 @@
 - Props drilling for showing bookmarked blogs
 - Condition styling
 - Ternary operator
+- [Deployed to Surge](https://dev.to/chayti/deploy-re-deploy-to-surge-and-common-errors-359d)
 
 
