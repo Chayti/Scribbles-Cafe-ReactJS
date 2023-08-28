@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ReadingTimeContext } from "./main";
 
-export default function RightSide() {
+export default function RightSide({ bookmarkedBlogs }) {
     const { time } = useContext(ReadingTimeContext);
 
     return (
@@ -13,12 +13,15 @@ export default function RightSide() {
             <div className="p-4 bg-gray-100 rounded-md mt-4">
                 <h1
                     className="font-bold mt-3">
-                    Bookmarked blogs: 8
+                    Bookmarked blogs: {bookmarkedBlogs.length}
                 </h1>
-                <p
-                    className="text-sm my-4 p-3 bg-white rounded-md">
-                    Component lifecycle in React — Class component vs Functional component
-                </p>
+                {
+                    bookmarkedBlogs.map(bookmarkedBlog => <p
+                        key={bookmarkedBlog.id}
+                        className="text-sm my-4 p-3 bg-white rounded-md">
+                        {bookmarkedBlog.blog_title}
+                    </p>)
+                }
             </div>
         </div>
     )

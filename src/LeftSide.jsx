@@ -1,8 +1,10 @@
 import { useContext, useEffect, useState } from "react"
 import { BsBookmark } from "react-icons/bs";
 import { ReadingTimeContext } from "./main";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-export default function LeftSide() {
+export default function LeftSide({ bookmarkedBlogs, setBookmarkedBlogs }) {
 
     const { setTime } = useContext(ReadingTimeContext);
     const [blogs, setBlogs] = useState([]);
@@ -19,6 +21,22 @@ export default function LeftSide() {
             }
         })()
     }, [])
+
+    function handleBookmarks(id, title) {
+        // console.log(id, title)
+
+        const newArray = [...bookmarkedBlogs]
+        newArray.push({
+            id,
+            blog_title: title
+        })
+
+        setBookmarkedBlogs(newArray)
+
+        bookmarkedBlogs.find(e => e.id == id)
+            ? toast(`Blog - "${title}" added in the list again!`)
+            : ""
+    }
 
     return (
         <div className="w-full md:w-4/6" >
@@ -55,7 +73,9 @@ export default function LeftSide() {
                                 className="me-2 text-gray-600 text-sm">
                                 {blog.reading_time} min read
                             </p>
-                            <BsBookmark />
+                            <button onClick={() => handleBookmarks(blog.id, blog.blog_title)}>
+                                <BsBookmark />
+                            </button>
                         </div>
                     </div>
 
@@ -79,7 +99,9 @@ export default function LeftSide() {
                         Mark as read
                     </button>
 
-                </div>)
+                    <ToastContainer />
+                </div>
+                )
             }
         </div>
     )
